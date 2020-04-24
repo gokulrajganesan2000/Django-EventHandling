@@ -1,0 +1,45 @@
+{% extends "event/base.html" %}
+
+{% block content %}
+    <div class="article-dual-column">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <div class="intro">
+                        <h1 class="text-center">{{ object.title }}</h1>
+                        <p class="text-center">
+                            <span class="by">by</span>
+                             <a href="{% url 'user-post-page' object.author.username %}">
+                                 {{ object.author }}
+                            </a>
+                            <span class="date">{{ object.event_date }} </span>
+                        </p>
+                        <a href="{{ object.poster.url }}" download title="Poster">
+                            <img class="img-fluid" src="{{ object.poster.url }}">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10 col-lg-4 offset-md-1">
+                    <div class="toc">
+                        <p>Contact Details</p>
+                        <ul>
+                            <li><strong>Email : </strong><a href="#" style="color: blue;">{{ object.email }}</a> </li>
+                            <li><strong>Phone : </strong><a href="#" style="color: blue;">{{ object.phone }}</a></li>
+                            <li><strong>url : </strong><a href="{{ object.url }}" style="color: blue;">{{ object.url }}</a> </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-10 col-lg-6 offset-md-1 offset-lg-0">
+                    <strong>
+                        <span class="by">Conducted by Department of {{object.department}}</span>
+                    </strong>
+                    <div class="text">
+                        <p>{{object.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

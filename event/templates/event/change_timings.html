@@ -1,0 +1,31 @@
+{% extends "event/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <div class="intro">
+                    <h2 class="text-center"><a  href="{% url 'principal-decision-page' object.id %}">{{object.title}}</a></h2>
+                    <p class="text-center">{{object.description}}</p>
+                    <p class="text">Old Requested Date : {{object.event_date}}</p>
+                    <p class="text">Old Requested Time : {{object.requested_time}}</p>
+                    <p class="text">Principal Commands : {{object.principal_comments}}</p>
+                    <hr>
+                </div>
+                <input type="text" name="id" value="{{ object.id }}" hidden>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Purpose</label>
+                    <input type="text" class="form-control"  name="purpose" id="formGroupExampleInput" placeholder="Example input">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Change Time</label>
+                    <input type="time" class="form-control"  name="requested_time" id="formGroupExampleInput" placeholder="Example input">
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

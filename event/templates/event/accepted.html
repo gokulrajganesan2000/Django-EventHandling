@@ -1,0 +1,25 @@
+{% extends "event/base.html" %}
+
+{% block content %}
+{% for post in events %}
+        <article class="media content-section">
+            <div class="col-md-6 col-lg-4">
+                <a href="{% url 'event-detail' post.id %}">
+                    <img class="rounded" width="300" src="{{ post.poster.url }}">
+                </a>
+            </div>
+                <div class="media-body">
+                    <div class="article-metadata">
+                        <a class="mr-2" href="{% url 'user-post-page' post.author.username %}">{{ post.author }}</a>
+                    </div>
+                    <h2><a class="article-title" href="{% url 'event-detail' post.id %}">{{ post.title }}</a></h2>
+                    <p class="article-content">{{ post.description }}</p>
+                    <small class="name">Conducted by : {{post.department}}</small><br>
+                    <small class="text-muted">Requested Date Time : {{ post.event_date }}-{{ post.requested_time}}</small><hr>
+                    {% ifnotequal user.username "principal" %}
+                        <p class="article-content">Principal Commants : {{ post.principal_comments }}</p>
+                    {% endifnotequal %}
+                </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
